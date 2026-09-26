@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danixa Molina - UX/UI Designer</title>
+<meta name="description" content="Danixa Molina — UX/UI Designer a Roma. Portfolio di progetti di design centrato sull'utente: Figma, FigJam, accessibilità e design responsive.">
+<meta property="og:title" content="Danixa Molina - UX/UI Designer">
+<meta property="og:description" content="Portfolio di progetti di design centrato sull'utente: Figma, FigJam, accessibilità e design responsive.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F7F3EE;
+    --ink: #1C1C1E;
+    --ink-light: #6B6B6B;
+    --accent: #E8552E;
+    --accent-hover: #C94520;
+    --surface: #EFEBE4;
+    --white: #FDFCFB;
+    --border: rgba(28,28,30,0.12);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 5vw;
+    background: rgba(247,243,238,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink-light);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--white);
+    background: var(--ink);
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--accent); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 5vw 4rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.2s ease forwards;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    opacity: 0;
+    animation: fadeUp 0.7s 0.35s ease forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-size: 1.05rem;
+    color: var(--ink-light);
+    max-width: 420px;
+    line-height: 1.7;
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.5s ease forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.65s ease forwards;
+  }
+
+  .btn-primary {
+    padding: 0.8rem 1.8rem;
+    background: var(--ink);
+    color: var(--white);
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+
+  .btn-ghost {
+    padding: 0.8rem 1.8rem;
+    border: 1.5px solid var(--border);
+    color: var(--ink);
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover { border-color: var(--ink); transform: translateY(-2px); }
+
+  .hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeLeft 0.8s 0.4s ease forwards;
+  }
+
+  .hero-img-wrap {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 3/4;
+    border-radius: 24px;
+    overflow: hidden;
+    background: var(--surface);
+    position: relative;
+  }
+
+  .hero-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* placeholder se non c'è foto */
+  .hero-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--ink-light);
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .hero-placeholder svg { opacity: 0.3; }
+
+  .hero-badge {
+    position: absolute;
+    bottom: -1rem;
+    left: -1rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 0.75rem 1rem;
+    border-radius: 14px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+
+  .hero-badge span {
+    display: block;
+    font-weight: 400;
+    color: var(--ink-light);
+    margin-top: 0.1rem;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0;
+    animation: fadeUp 1s 1s ease forwards;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: var(--ink-light);
+    animation: scrollPulse 1.5s ease-in-out infinite;
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 7rem 5vw; }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .about-text p {
+    color: var(--ink-light);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-text p strong { color: var(--ink); font-weight: 600; }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    background: var(--cream);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+  }
+
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-number em { color: var(--accent); font-style: normal; }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--cream); }
+
+  .projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  }
+
+  .project-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+  }
+
+  .project-thumb-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-light);
+    font-size: 0.8rem;
+    text-align: center;
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+
+  .project-body { padding: 1.5rem; }
+
+  .project-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.8rem;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    background: var(--surface);
+    color: var(--ink-light);
+    border-radius: 999px;
+  }
+
+  .project-title {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+    line-height: 1.2;
+  }
+
+  .project-desc {
+    font-size: 0.88rem;
+    color: var(--ink-light);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .project-link {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: gap 0.2s;
+  }
+
+  .project-card:hover .project-link { gap: 0.5rem; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--ink); }
+
+  #skills .section-title { color: var(--white); }
+  #skills .section-label { color: var(--accent); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .skill-group {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+
+  .skill-group-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .skill-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .skill-list li {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.75);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .skill-list li::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── PROCESS ── */
+  #process { background: var(--white); }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+    counter-reset: steps;
+  }
+
+  .process-step {
+    counter-increment: steps;
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    position: relative;
+    background: var(--cream);
+  }
+
+  .process-step::before {
+    content: "0" counter(steps);
+    font-family: var(--serif);
+    font-size: 3rem;
+    color: rgba(232,85,46,0.15);
+    line-height: 1;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .process-step h3 {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .process-step p {
+    font-size: 0.88rem;
+    color: var(--ink-light);
+    line-height: 1.6;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--cream); }
+
+  .contact-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 1rem;
+  }
+
+  .contact-wrap .section-label { justify-content: center; display: flex; }
+  .contact-wrap .section-title { text-align: center; }
+
+  .contact-text {
+    font-size: 1.05rem;
+    color: var(--ink-light);
+    margin: 1.5rem 0 2.5rem;
+    line-height: 1.7;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: transform 0.2s;
+  }
+
+  .contact-link:hover { transform: translateY(-2px); }
+
+  .contact-link.primary {
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  .contact-link.primary:hover { background: var(--accent); }
+
+  .contact-link.secondary {
+    border: 1.5px solid var(--border);
+    color: var(--ink);
+    background: var(--white);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 2rem 5vw;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50%       { opacity: 1;   transform: scaleY(0.6); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    #hero {
+      grid-template-columns: 1fr;
+      padding-top: 6rem;
+      text-align: center;
+    }
+
+    .hero-visual { order: -1; }
+    .hero-img-wrap { max-width: 260px; margin: 0 auto; aspect-ratio: 1/1; border-radius: 50%; }
+    .hero-badge { display: none; }
+    .hero-actions { justify-content: center; }
+    .hero-sub { margin: 1rem auto 0; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+    .nav-links { display: none; }
+
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Danixa Molina</a>
+  <ul class="nav-links">
+    <li><a href="#about">Chi sono</a></li>
+    <li><a href="#projects">Progetti</a></li>
+    <li><a href="#skills">Skill</a></li>
+    <li><a href="#contact">Contatti</a></li>
+  </ul>
+  <a href="mailto:yesille.molina@gmail.com" class="nav-cta">Scrivimi</a>
+</nav>
+
+<main>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text">
+    <span class="hero-tag">UX/UI Designer · Aperta a nuove opportunità</span>
+    <h1 class="hero-title">
+      Design che<br>
+      <em>risolve</em><br>
+      problemi veri
+    </h1>
+    <p class="hero-sub">
+      Sono <strong>Danixa Molina</strong>, UX/UI Designer specializzata in interfacce web intuitive, accessibili e responsive. Progetto e gestisco siti web reali con Figma e FigJam, basando ogni scelta sulla ricerca e sull'empatia con l'utente.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">Vedi i miei lavori</a>
+      <a href="#contact" class="btn-ghost">Contattami</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-img-wrap">
+      <img src="foto_profilo.jpeg" alt="Danixa Molina">
+    </div>
+    <div class="hero-badge">
+      📍 Roma, Italia
+      <span>Aperta a opportunità remote</span>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Chi sono</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2 class="section-title">Design centrato<br>sull'utente</h2>
+      <p>
+        Ho completato il corso di <strong>UX/UI Design presso Boolean</strong>, dove ho imparato a progettare interfacce digitali attraverso un processo strutturato: dalla ricerca utente ai wireframe, dai prototipi ai test di usabilità.
+      </p>
+      <p>
+        Attualmente lavoro come <strong>UX/UI Designer per PDG Roma & GuardaOltre</strong>, dove progetto, ottimizzo e gestisco i siti web di due associazioni no-profit, curando esperienza utente, wireframe e identità visiva online.
+      </p>
+      <p>
+        Credo che il buon design non si veda: <strong>funziona e basta</strong>. Ogni scelta visiva deve avere una ragione, ogni flusso deve ridurre la fatica cognitiva dell'utente. Sono sempre aperta a <strong>nuove opportunità</strong> in team dinamici dove continuare a crescere e mettere alla prova nuove competenze.
+      </p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Siti web progettati</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1<em>x</em></div>
+        <div class="stat-label">Certificazione Boolean</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1<em>+</em></div>
+        <div class="stat-label">Anno di esperienza UX/UI</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100<em>%</em></div>
+        <div class="stat-label">Orientata all'utente</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-header">
+    <div>
+      <div class="section-label">Lavori selezionati</div>
+      <h2 class="section-title">Case Study</h2>
+    </div>
+    <a href="https://www.figma.com/@danixa_molina" target="_blank" rel="noopener noreferrer" class="btn-ghost" style="white-space:nowrap">
+      Vedi su Figma →
+    </a>
+  </div>
+
+  <div class="project-grid">
+
+    <a href="https://www.pdgroma.com" target="_blank" rel="noopener noreferrer" class="project-card reveal">
+      <img class="project-thumb" src="pdg_roma.png" alt="Sito Parola della Grazia">
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">UI Design</span>
+          <span class="tag">Figma</span>
+          <span class="tag">Responsive Design</span>
+        </div>
+        <h3 class="project-title">Parola della Grazia</h3>
+        <p class="project-desc">
+          Progettazione e ottimizzazione del sito web dell'associazione: nuova identità visiva online, wireframe e interfaccia responsive per garantire coerenza stilistica e navigazione intuitiva.
+        </p>
+        <span class="project-link">Visita il sito →</span>
+      </div>
+    </a>
+
+    <a href="https://www.guardaoltre.it" target="_blank" rel="noopener noreferrer" class="project-card reveal">
+      <img class="project-thumb" src="guardaoltre.jpeg" alt="Sito GuardaOltre">
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">UX Design</span>
+          <span class="tag">Accessibilità</span>
+          <span class="tag">Figma</span>
+        </div>
+        <h3 class="project-title">GuardaOltre</h3>
+        <p class="project-desc">
+          Analisi dei bisogni degli utenti e ottimizzazione continua delle pagine per migliorare accessibilità, usabilità e impatto comunicativo del sito.
+        </p>
+        <span class="project-link">Visita il sito →</span>
+      </div>
+    </a>
+
+    <div class="project-card reveal" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:2.5rem 1.5rem; border:1.5px dashed var(--border); background:transparent;">
+      <h3 class="project-title" style="font-size:1.2rem;">Nuovi case study in arrivo</h3>
+      <p class="project-desc">
+        Sto preparando approfondimenti dettagliati sul mio processo di design, dalla ricerca al prototipo. Nel frattempo, scrivimi per una demo dal vivo del mio lavoro.
+      </p>
+      <a href="#contact" class="btn-ghost">Contattami →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Competenze</div>
+  <h2 class="section-title">Cosa so fare</h2>
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Design Tool</div>
+      <ul class="skill-list">
+        <li>Figma</li>
+        <li>FigJam</li>
+      </ul>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">UX Process</div>
+      <ul class="skill-list">
+        <li>User Research</li>
+        <li>Usability Testing</li>
+        <li>Wireframing</li>
+        <li>Prototyping</li>
+      </ul>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">UI Skills</div>
+      <ul class="skill-list">
+        <li>Design System</li>
+        <li>Responsive Design</li>
+        <li>Accessibilità</li>
+        <li>Interaction Design</li>
+      </ul>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">AI Tools</div>
+      <ul class="skill-list">
+        <li>Claude</li>
+        <li>Gemini</li>
+        <li>ChatGPT</li>
+      </ul>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Soft Skills</div>
+      <ul class="skill-list">
+        <li>Problem Solving</li>
+        <li>Comunicazione</li>
+        <li>Lavoro di team</li>
+        <li>Apprendimento rapido</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-label">Come lavoro</div>
+  <h2 class="section-title">Il mio processo</h2>
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <h3>Scoperta</h3>
+      <p>Ascolto, ricerco e comprendo il problema. Interviste utenti, analisi competitiva, definizione degli obiettivi.</p>
+    </div>
+    <div class="process-step reveal">
+      <h3>Definizione</h3>
+      <p>Sintetizzo i dati in personas, user journey e problem statement chiari su cui basare le soluzioni.</p>
+    </div>
+    <div class="process-step reveal">
+      <h3>Ideazione</h3>
+      <p>Sketching, crazy 8s, wireframe a bassa fedeltà. Genero molte idee prima di convergere sulla soluzione migliore.</p>
+    </div>
+    <div class="process-step reveal">
+      <h3>Prototipazione</h3>
+      <p>Realizzo prototipi interattivi su Figma per validare le scelte con utenti reali prima dello sviluppo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="section-label">Contatti</div>
+    <h2 class="section-title">Parliamo di design</h2>
+    <p class="contact-text">
+      Sono aperta a opportunità di lavoro, stage e collaborazioni. Se pensi che possiamo fare qualcosa di bello insieme, scrivimi!
+    </p>
+    <div class="contact-links">
+      <a href="mailto:yesille.molina@gmail.com" class="contact-link primary">
+        ✉️ Scrivimi una mail
+      </a>
+      <a href="https://www.linkedin.com/in/yesill-molina/" target="_blank" rel="noopener noreferrer" class="contact-link secondary">
+        LinkedIn →
+      </a>
+      <a href="https://www.figma.com/@danixa_molina" target="_blank" rel="noopener noreferrer" class="contact-link secondary">
+        Figma →
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Danixa Molina</span>
+  <span>Fatto con ❤️ e Figma</span>
+  <a href="#hero">Torna su ↑</a>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav shadow on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.boxShadow = window.scrollY > 20
+      ? '0 2px 20px rgba(0,0,0,0.08)'
+      : 'none';
+  });
+</script>
+</body>
+</html>
